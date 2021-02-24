@@ -6,7 +6,7 @@ class Direccion(models.Model):
     uv = models.PositiveSmallIntegerField(verbose_name="Unidad vecinal")
     numero = models.PositiveSmallIntegerField(verbose_name="Numero de casa")
     calle = models.CharField(max_length=30, verbose_name="Nombre de la calle")
-    pc = models.PositiveIntegerField(blank=True, verbose_name="Codigo Postal") 
+    pc = models.PositiveIntegerField(verbose_name="Codigo Postal") 
 
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición") 
@@ -15,6 +15,9 @@ class Direccion(models.Model):
         verbose_name = "Direccion"
         verbose_name_plural = "Direcciones"
         ordering = ['uv']
+    
+    def __str__(self):
+        return f'{self.direccion}'
 
 class FormularioBase(models.Model):
     rut = models.CharField(max_length=30)

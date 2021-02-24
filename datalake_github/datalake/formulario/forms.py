@@ -5,4 +5,4 @@ class FormularioBase(forms.ModelForm):
 
     class Meta:
         model = FormularioBase
-        fields = ['rut', 'direccion']
+        fields = ['rut']

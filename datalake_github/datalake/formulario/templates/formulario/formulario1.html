@@ -11,10 +11,43 @@
             <legend class="border-bottom mb-4">Formulario</legend>
             {{ fb_form |crispy }}
         </fieldset>
+        <label class="form-group" for="Direccion">Direccion</label>
+        <input class="form-group" type="text" name="direccion" id="direccion"></input>
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit">Subir formulario</button>
         </div>
     </form>
+
+<script>
+$( function() {
+var availableTags = [
+    "Direccion 1",
+    "Direccion 2",
+    "Direccion 3",
+    "Direccion 4",
+    "Direccion 5",
+    "Direccion 6",
+    "Direccion 7",
+    "Direccion 8",
+    "Direccion 9",
+    "Direccion 10",
+    "Direccion 11",
+    "Direccion 12",
+    "Direccion 13",
+    "Direccion 14",
+    "Direccion 15",
+    "Direccion 16",
+    "Direccion 17",
+    "Direccion 18",
+    "Direccion 19",
+    "Direccion 20",
+];
+$( "#direccion" ).autocomplete({
+    source: availableTags
+});
+} );
+</script>
+
 </div>
 
 {% endblock %}
