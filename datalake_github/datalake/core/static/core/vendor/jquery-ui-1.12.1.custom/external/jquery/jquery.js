@@ -690,7 +690,7 @@ var i,
 	ridentifier = new RegExp( "^" + identifier + "$" ),
 
 	matchExpr = {
-		"ID": new RegExp( "^#(" + identifier + ")" ),
+		"numero": new RegExp( "^#(" + identifier + ")" ),
 		"CLASS": new RegExp( "^\\.(" + identifier + ")" ),
 		"TAG": new RegExp( "^(" + identifier + "|[*])" ),
 		"ATTR": new RegExp( "^" + attributes ),
@@ -862,10 +862,10 @@ function Sizzle( selector, context, results, seed ) {
 				} else if ( context.nodeName.toLowerCase() !== "object" ) {
 
 					// Capture the context ID, setting it first if necessary
-					if ( (nid = context.getAttribute( "id" )) ) {
+					if ( (nid = context.getAttribute( "numero" )) ) {
 						nid = nid.replace( rescape, "\\$&" );
 					} else {
-						context.setAttribute( "id", (nid = expando) );
+						context.setAttribute( "numero", (nid = expando) );
 					}
 
 					// Prefix every selector in the list
@@ -891,7 +891,7 @@ function Sizzle( selector, context, results, seed ) {
 					} catch ( qsaError ) {
 					} finally {
 						if ( nid === expando ) {
-							context.removeAttribute( "id" );
+							context.removeAttribute( "numero" );
 						}
 					}
 				}
@@ -1130,28 +1130,28 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	// ID find and filter
 	if ( support.getById ) {
-		Expr.find["ID"] = function( id, context ) {
+		Expr.find["numero"] = function( id, context ) {
 			if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
 				var m = context.getElementById( id );
 				return m ? [ m ] : [];
 			}
 		};
-		Expr.filter["ID"] = function( id ) {
+		Expr.filter["numero"] = function( id ) {
 			var attrId = id.replace( runescape, funescape );
 			return function( elem ) {
-				return elem.getAttribute("id") === attrId;
+				return elem.getAttribute("numero") === attrId;
 			};
 		};
 	} else {
 		// Support: IE6/7
 		// getElementById is not reliable as a find shortcut
-		delete Expr.find["ID"];
+		delete Expr.find["numero"];
 
-		Expr.filter["ID"] =  function( id ) {
+		Expr.filter["numero"] =  function( id ) {
 			var attrId = id.replace( runescape, funescape );
 			return function( elem ) {
 				var node = typeof elem.getAttributeNode !== "undefined" &&
-					elem.getAttributeNode("id");
+					elem.getAttributeNode("numero");
 				return node && node.value === attrId;
 			};
 		};
@@ -2587,11 +2587,11 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 
 		// Reduce context if the leading compound selector is an ID
 		tokens = match[0] = match[0].slice( 0 );
-		if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
+		if ( tokens.length > 2 && (token = tokens[0]).type === "numero" &&
 				support.getById && context.nodeType === 9 && documentIsHTML &&
 				Expr.relative[ tokens[1].type ] ) {
 
-			context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
+			context = ( Expr.find["numero"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
 			if ( !context ) {
 				return results;
 

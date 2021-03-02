@@ -105,7 +105,7 @@ Michael Wu <michaelmwu@gmail.com>
 Adam Parod <mystic414@gmail.com>
 Guillaume Gautreau <guillaume+github@ghusse.com>
 Marcel Toele <EleotleCram@gmail.com>
-Dan Streetman <ddstreet@ieee.org>
+Dan calleman <ddcalle@ieee.org>
 Matt Hoskins <matt@nipltd.com>
 Giovanni Giacobbi <giovanni@giacobbi.net>
 Kyle Florence <kyle.florence@gmail.com>

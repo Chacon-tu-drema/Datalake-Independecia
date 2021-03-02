@@ -607,7 +607,7 @@ var i,
 	ridentifier = new RegExp( "^" + identifier + "$" ),
 
 	matchExpr = {
-		"ID": new RegExp( "^#(" + identifier + ")" ),
+		"numero": new RegExp( "^#(" + identifier + ")" ),
 		"CLASS": new RegExp( "^\\.(" + identifier + ")" ),
 		"TAG": new RegExp( "^(" + identifier + "|[*])" ),
 		"ATTR": new RegExp( "^" + attributes ),
@@ -805,10 +805,10 @@ function Sizzle( selector, context, results, seed ) {
 				} else if ( context.nodeName.toLowerCase() !== "object" ) {
 
 					// Capture the context ID, setting it first if necessary
-					if ( (nid = context.getAttribute( "id" )) ) {
+					if ( (nid = context.getAttribute( "numero" )) ) {
 						nid = nid.replace( rcssescape, fcssescape );
 					} else {
-						context.setAttribute( "id", (nid = expando) );
+						context.setAttribute( "numero", (nid = expando) );
 					}
 
 					// Prefix every selector in the list
@@ -833,7 +833,7 @@ function Sizzle( selector, context, results, seed ) {
 					} catch ( qsaError ) {
 					} finally {
 						if ( nid === expando ) {
-							context.removeAttribute( "id" );
+							context.removeAttribute( "numero" );
 						}
 					}
 				}
@@ -1129,31 +1129,31 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	// ID filter and find
 	if ( support.getById ) {
-		Expr.filter["ID"] = function( id ) {
+		Expr.filter["numero"] = function( id ) {
 			var attrId = id.replace( runescape, funescape );
 			return function( elem ) {
-				return elem.getAttribute("id") === attrId;
+				return elem.getAttribute("numero") === attrId;
 			};
 		};
-		Expr.find["ID"] = function( id, context ) {
+		Expr.find["numero"] = function( id, context ) {
 			if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
 				var elem = context.getElementById( id );
 				return elem ? [ elem ] : [];
 			}
 		};
 	} else {
-		Expr.filter["ID"] =  function( id ) {
+		Expr.filter["numero"] =  function( id ) {
 			var attrId = id.replace( runescape, funescape );
 			return function( elem ) {
 				var node = typeof elem.getAttributeNode !== "undefined" &&
-					elem.getAttributeNode("id");
+					elem.getAttributeNode("numero");
 				return node && node.value === attrId;
 			};
 		};
 
 		// Support: IE 6 - 7 only
 		// getElementById is not reliable as a find shortcut
-		Expr.find["ID"] = function( id, context ) {
+		Expr.find["numero"] = function( id, context ) {
 			if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
 				var node, i, elems,
 					elem = context.getElementById( id );
@@ -1161,7 +1161,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 				if ( elem ) {
 
 					// Verify the id attribute
-					node = elem.getAttributeNode("id");
+					node = elem.getAttributeNode("numero");
 					if ( node && node.value === id ) {
 						return [ elem ];
 					}
@@ -1170,7 +1170,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 					elems = context.getElementsByName( id );
 					i = 0;
 					while ( (elem = elems[i++]) ) {
-						node = elem.getAttributeNode("id");
+						node = elem.getAttributeNode("numero");
 						if ( node && node.value === id ) {
 							return [ elem ];
 						}
@@ -2627,10 +2627,10 @@ select = Sizzle.select = function( selector, context, results, seed ) {
 
 		// Reduce context if the leading compound selector is an ID
 		tokens = match[0] = match[0].slice( 0 );
-		if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
+		if ( tokens.length > 2 && (token = tokens[0]).type === "numero" &&
 				context.nodeType === 9 && documentIsHTML && Expr.relative[ tokens[1].type ] ) {
 
-			context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
+			context = ( Expr.find["numero"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
 			if ( !context ) {
 				return results;
 
@@ -11963,7 +11963,7 @@ var labels = $.fn.labels = function() {
 	labels = this.eq( 0 ).parents( "label" );
 
 	// Look for the label based on the id
-	id = this.attr( "id" );
+	id = this.attr( "numero" );
 	if ( id ) {
 
 		// We don't search against the document in case the element
@@ -12077,7 +12077,7 @@ var uniqueId = $.fn.extend( {
 	removeUniqueId: function() {
 		return this.each( function() {
 			if ( /^ui-id-\d+$/.test( this.id ) ) {
-				$( this ).removeAttr( "id" );
+				$( this ).removeAttr( "numero" );
 			}
 		} );
 	}
@@ -12729,7 +12729,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 			helper = helperIsFunction ?
 				$( o.helper.apply( this.element[ 0 ], [ event ] ) ) :
 				( o.helper === "clone" ?
-					this.element.clone().removeAttr( "id" ) :
+					this.element.clone().removeAttr( "numero" ) :
 					this.element );
 
 		if ( !helper.parents( "body" ).length ) {
@@ -16124,7 +16124,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		o = o || {};
 
 		$( items ).each( function() {
-			var res = ( $( o.item || this ).attr( o.attribute || "id" ) || "" )
+			var res = ( $( o.item || this ).attr( o.attribute || "numero" ) || "" )
 				.match( o.expression || ( /(.+)[\-=_](.+)/ ) );
 			if ( res ) {
 				str.push(
@@ -16149,7 +16149,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 		o = o || {};
 
 		items.each( function() {
-			ret.push( $( o.item || this ).attr( o.attribute || "id" ) || "" );
+			ret.push( $( o.item || this ).attr( o.attribute || "numero" ) || "" );
 		} );
 		return ret;
 
@@ -17396,9 +17396,9 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 			.attr( "role", "tab" )
 			.each( function() {
 				var header = $( this ),
-					headerId = header.uniqueId().attr( "id" ),
+					headerId = header.uniqueId().attr( "numero" ),
 					panel = header.next(),
-					panelId = panel.uniqueId().attr( "id" );
+					panelId = panel.uniqueId().attr( "numero" );
 				header.attr( "aria-controls", panelId );
 				panel.attr( "aria-labelledby", headerId );
 			} )
@@ -17995,7 +17995,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 				item
 					.attr( "aria-haspopup", "true" )
 					.prepend( submenuCaret );
-				menu.attr( "aria-labelledby", item.attr( "id" ) );
+				menu.attr( "aria-labelledby", item.attr( "numero" ) );
 			} );
 
 		this._addClass( newSubmenus, "ui-menu", "ui-widget ui-widget-content ui-front" );
@@ -18069,7 +18069,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 		// Only update aria-activedescendant if there's a role
 		// otherwise we assume focus is managed elsewhere
 		if ( this.options.role ) {
-			this.element.attr( "aria-activedescendant", focused.attr( "id" ) );
+			this.element.attr( "aria-activedescendant", focused.attr( "numero" ) );
 		}
 
 		// Highlight active parent menu item, if any
@@ -22419,7 +22419,7 @@ $.widget( "ui.dialog", {
 		// otherwise we brute force the content as the description
 		if ( !this.element.find( "[aria-describedby]" ).length ) {
 			this.uiDialog.attr( {
-				"aria-describedby": this.element.uniqueId().attr( "id" )
+				"aria-describedby": this.element.uniqueId().attr( "numero" )
 			} );
 		}
 	},
@@ -22470,7 +22470,7 @@ $.widget( "ui.dialog", {
 		this.uiDialogTitlebar.prependTo( this.uiDialog );
 
 		this.uiDialog.attr( {
-			"aria-labelledby": uiDialogTitle.attr( "id" )
+			"aria-labelledby": uiDialogTitle.attr( "numero" )
 		} );
 	},
 
@@ -23174,7 +23174,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 	},
 
 	_create: function() {
-		var selectmenuId = this.element.uniqueId().attr( "id" );
+		var selectmenuId = this.element.uniqueId().attr( "numero" );
 		this.ids = {
 			element: selectmenuId,
 			button: selectmenuId + "-button",
@@ -23290,7 +23290,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 					that.focusIndex = item.index;
 
 					that.button.attr( "aria-activedescendant",
-						that.menuItems.eq( item.index ).attr( "id" ) );
+						that.menuItems.eq( item.index ).attr( "numero" ) );
 				}
 			} )
 			.menu( "instance" );
@@ -23641,7 +23641,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 	},
 
 	_setAria: function( item ) {
-		var id = this.menuItems.eq( item.index ).attr( "id" );
+		var id = this.menuItems.eq( item.index ).attr( "numero" );
 
 		this.button.attr( {
 			"aria-labelledby": id,
@@ -25507,7 +25507,7 @@ $.widget( "ui.tabs", {
 
 		this.anchors.each( function( i, anchor ) {
 			var selector, panel, panelId,
-				anchorId = $( anchor ).uniqueId().attr( "id" ),
+				anchorId = $( anchor ).uniqueId().attr( "numero" ),
 				tab = $( anchor ).closest( "li" ),
 				originalAriaControls = tab.attr( "aria-controls" );
 
@@ -25563,7 +25563,7 @@ $.widget( "ui.tabs", {
 
 	_createPanel: function( id ) {
 		return $( "<div>" )
-			.attr( "id", id )
+			.attr( "numero", id )
 			.data( "ui-tabs-destroy", true );
 	},
 
@@ -26259,7 +26259,7 @@ $.widget( "ui.tooltip", {
 
 		tooltipData = this._tooltip( target );
 		tooltip = tooltipData.tooltip;
-		this._addDescribedBy( target, tooltip.attr( "id" ) );
+		this._addDescribedBy( target, tooltip.attr( "numero" ) );
 		tooltip.find( ".ui-tooltip-content" ).html( content );
 
 		// Support: Voiceover on OS X, JAWS on IE <= 9
@@ -26268,7 +26268,7 @@ $.widget( "ui.tooltip", {
 		this.liveRegion.children().hide();
 		a11yContent = $( "<div>" ).html( tooltip.find( ".ui-tooltip-content" ).html() );
 		a11yContent.removeAttr( "name" ).find( "[name]" ).removeAttr( "name" );
-		a11yContent.removeAttr( "id" ).find( "[id]" ).removeAttr( "id" );
+		a11yContent.removeAttr( "numero" ).find( "[id]" ).removeAttr( "numero" );
 		a11yContent.appendTo( this.liveRegion );
 
 		function position( event ) {
@@ -26407,7 +26407,7 @@ $.widget( "ui.tooltip", {
 	_tooltip: function( element ) {
 		var tooltip = $( "<div>" ).attr( "role", "tooltip" ),
 			content = $( "<div>" ).appendTo( tooltip ),
-			id = tooltip.uniqueId().attr( "id" );
+			id = tooltip.uniqueId().attr( "numero" );
 
 		this._addClass( content, "ui-tooltip-content" );
 		this._addClass( tooltip, "ui-tooltip", "ui-widget ui-widget-content" );
@@ -26427,7 +26427,7 @@ $.widget( "ui.tooltip", {
 
 	_removeTooltip: function( tooltip ) {
 		tooltip.remove();
-		delete this.tooltips[ tooltip.attr( "id" ) ];
+		delete this.tooltips[ tooltip.attr( "numero" ) ];
 	},
 
 	_appendTo: function( target ) {
