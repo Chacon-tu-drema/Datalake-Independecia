@@ -36,8 +36,8 @@ class FormularioBase(models.Model):
                                           )
     numero_identificacion = models.CharField(default="", max_length=30)
     direccion = models.CharField(default="", max_length=30)
-    numero_casa = models.PositiveIntegerField(default=0)
-    fecha_nacimiento = models.DateField(verbose_name="Fecha de Nacimiento") 
+    numero_calle = models.PositiveIntegerField(default=0)
+    uv = models.IntegerField(default=0)
     texto1 = models.TextField(blank=True, verbose_name="Texto 1")
     texto2 = models.TextField(blank=True, verbose_name="Texto 2")
     texto3 = models.TextField(blank=True, verbose_name="Texto 3")
@@ -54,5 +54,5 @@ class FormularioBase(models.Model):
 
   
     def __str__(self):
-        return f'{self.created} - {self.rut} '
+        return f'{self.created} - {self.numero_identificacion} '
     
