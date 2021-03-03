@@ -10,9 +10,10 @@ class FormularioBase(forms.ModelForm):
             'tipo_identificacion',
             'numero_identificacion',
             'direccion',
-            'numero_casa',
-            'fecha_nacimiento',
+            'numero_calle',
             'texto1',
             'texto2',
             'texto3',
-            'texto4']
+            'texto4',
+            'autor'
+            ]
