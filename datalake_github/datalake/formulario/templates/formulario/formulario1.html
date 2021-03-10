@@ -19,12 +19,12 @@
 
 
 <script>
-$( function() {
+$(function() {
 $( "#id_direccion" ).autocomplete({
     source: '{% url 'autocompete_calles' %}'
 });
 });
-$( function() {
+$(function() {
 $( "#id_p_origen" ).autocomplete({
     source: '{% url 'autocompete_pais' %}'
 });

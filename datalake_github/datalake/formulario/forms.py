@@ -15,5 +15,5 @@ class FormularioBase(forms.ModelForm):
             'texto2',
             'texto3',
             'texto4',
-            'autor'
+            'autor',
             ]
